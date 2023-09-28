@@ -8,6 +8,7 @@ import {
 	UserCredential,
 	User
 } from 'firebase/auth';
+import { useFirebaseUser } from './useStates';
 
 export async function createUser(email: string, password: string): Promise<any | void> {
 	const auth: Auth = getAuth();
@@ -30,8 +31,10 @@ export async function signInUser(email: string, password: string): Promise<UserC
 
 export function initUser(): void {
 	const auth: Auth = getAuth();
+	const firebaseUser = useFirebaseUser();
+	firebaseUser.value = auth.currentUser;
 	onAuthStateChanged(auth, (user: User | null) => {
-		console.log(user ? user : 'nope');
+		firebaseUser.value = user;
 	});
 }
 
