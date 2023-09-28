@@ -2,7 +2,6 @@ import { initializeApp } from "firebase/app";
 
 export default defineNuxtPlugin(nuxtApp => {
 	const config = useRuntimeConfig();
-
 	const firebaseConfig = {
 		apiKey: config.public.FIREBASE_API_KEY,
 		authDomain: config.public.FIREBASE_AUTH_DOMAIN,
